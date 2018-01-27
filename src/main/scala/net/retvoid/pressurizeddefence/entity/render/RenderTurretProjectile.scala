@@ -36,7 +36,7 @@ class RenderTurretProjectile(renderIn: RenderManager) extends Render[EntityTurre
   override def doRender(entity: EntityTurretProjectile, x: Double, y: Double, z: Double, entityYaw: Float, partialTicks: Float): Unit = {
     GlStateManager.pushMatrix()
     GlStateManager.translate(x, y, z)
-    GlStateManager.rotate(entityYaw, x.toFloat, y.toFloat, z.toFloat)
+    GlStateManager.rotate(entityYaw + 180, 0f, 1f, 0f)
     GlStateManager.scale(0.5, 0.5, 0.5)
     Minecraft.getMinecraft.getRenderItem.renderItem(item, ItemCameraTransforms.TransformType.NONE)
     GlStateManager.popMatrix()

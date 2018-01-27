@@ -23,7 +23,7 @@ object ItemTurretBulletHeavy extends ItemTurretAmmo {
 
   override def getDamage: Int = 8
 
-  override def getSpeed: Float = 0.1f
+  override def getSpeed: Float = 3
 
-  override def getWeight: Float = 0.1f
+  override def getWeight: Float = 5
 }
