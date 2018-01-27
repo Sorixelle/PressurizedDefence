@@ -1,0 +1,21 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "pressurizeddefence:boiler"
+  },
+  "variants": {
+    "normal": [ { } ],
+    "inventory": [ { } ],
+    "facing": {
+      "north": { },
+      "south": { "y": 180 },
+      "east": { "y": 90 },
+      "west": { "y": 270 }
+    },
+    "processing": {
+      "true": { },
+      "false": { }
+    }
+  }
+
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "pressurizeddefence:block/boilerfront",
+    "down": "pressurizeddefence:block/machinebase",
+    "up": "pressurizeddefence:block/boilertop",
+    "north": "pressurizeddefence:block/boilerfront",
+    "south": "pressurizeddefence:block/machinebase",
+    "east": "pressurizeddefence:block/machinebase",
+    "west": "pressurizeddefence:block/machinebase"
+  }
+}
