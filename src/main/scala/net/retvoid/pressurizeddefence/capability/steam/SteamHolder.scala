@@ -28,7 +28,7 @@ class SteamHolder(maxSteam: Int = 10000) extends ISteamHolder {
   override def add(amount: Int, simulate: Boolean): Int =
     if (steam != getMaxSteam) {
       val prev: Int = getSteam
-      if (steam + amount < getMaxSteam) {
+      if (steam + amount <= getMaxSteam) {
         if (!simulate) {
           steam += amount
           onSteamChange(prev)
@@ -47,7 +47,7 @@ class SteamHolder(maxSteam: Int = 10000) extends ISteamHolder {
   override def consume(amount: Int, simulate: Boolean): Int =
     if (steam != 0) {
       val prev: Int = getSteam
-      if (steam - amount > 0) {
+      if (steam - amount >= 0) {
         if (!simulate) {
           steam -= amount
           onSteamChange(prev)
