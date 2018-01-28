@@ -38,7 +38,7 @@ import org.apache.logging.log4j.{LogManager, Logger}
 object PressurizedDefence {
   final val MOD_ID = "pressurizeddefence"
   final val MOD_NAME = "Pressurized Defence"
-  final val MOD_VERSION = "1.0.0"
+  final val MOD_VERSION = "0.1.0"
 
   private var loggerOpt: Option[Logger] = None
   def logger: Logger = loggerOpt.getOrElse(LogManager.getLogger(MOD_NAME))
