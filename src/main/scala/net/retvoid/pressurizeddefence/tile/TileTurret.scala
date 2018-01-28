@@ -22,7 +22,7 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.tileentity.TileEntity
-import net.minecraft.util.{EnumFacing, EnumParticleTypes, ITickable}
+import net.minecraft.util._
 import net.minecraft.util.math.{BlockPos, Vec3d}
 import net.minecraft.world.WorldServer
 import net.minecraftforge.common.capabilities.Capability
@@ -106,6 +106,7 @@ class TileTurret extends TileEntity with ITickable {
             projectile.fireInDirection(facing)
             steam.consume(steamUsed)
             world.spawnEntity(projectile)
+            world.playSound(null, pos, SoundEvent.REGISTRY.getObject(new ResourceLocation("block.shulker_box.open")), SoundCategory.BLOCKS, 1.0f, 1.0f)
             doParticles(facing)
           }
           fireCooldown = cooldown
@@ -134,7 +135,6 @@ class TileTurret extends TileEntity with ITickable {
     -0.2 to 0.2 by 0.1 foreach { offset =>
       world.asInstanceOf[WorldServer].spawnParticle(
         EnumParticleTypes.SMOKE_NORMAL,
-        false,
         particlePos.x,
         particlePos.y,
         particlePos.z,

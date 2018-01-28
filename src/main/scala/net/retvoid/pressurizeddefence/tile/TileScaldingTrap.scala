@@ -21,12 +21,14 @@ package net.retvoid.pressurizeddefence.tile
 import net.minecraft.entity.EntityLivingBase
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.tileentity.TileEntity
-import net.minecraft.util.math.AxisAlignedBB
-import net.minecraft.util.{EnumFacing, ITickable}
+import net.minecraft.util.math.{AxisAlignedBB, BlockPos, Vec3d}
+import net.minecraft.util._
+import net.minecraft.world.WorldServer
 import net.minecraftforge.common.capabilities.Capability
 import net.retvoid.pressurizeddefence.capability.Capabilities
 import net.retvoid.pressurizeddefence.capability.steam.SteamHolder
 import net.retvoid.pressurizeddefence.entity.ModDamageSources
+import net.retvoid.pressurizeddefence.Predefs._
 
 import scala.collection.JavaConverters._
 
@@ -68,6 +70,8 @@ class TileScaldingTrap extends TileEntity with ITickable {
           if (entities.nonEmpty) {
             val entity: EntityLivingBase = entities.head
             steam.consume(steam.getMaxSteam)
+            doParticles(pos.add(0, 1, 0).asDoubles)
+            world.playSound(null, pos, SoundEvent.REGISTRY.getObject(new ResourceLocation("block.lava.extinguish")), SoundCategory.BLOCKS, 1.0f, 1.0f)
             entity.setFire(10)
             entity.attackEntityFrom(ModDamageSources.SCALDING_TRAP, 2f)
             reloadCooldown = 200
@@ -80,4 +84,18 @@ class TileScaldingTrap extends TileEntity with ITickable {
       }
     }
   }
+
+  private def doParticles(pos: Vec3d): Unit =
+    (for {
+      x <- (1/16d) * 4 :: (1/16d) * 13 :: Nil
+      z <- (1/16d) * 4 :: (1/16d) * 13 :: Nil
+    } yield (x, z)) foreach { case (x, z) =>
+      world.asInstanceOf[WorldServer].spawnParticle(
+        EnumParticleTypes.CLOUD,
+        pos.x + x, pos.y, pos.z + z,
+        10,
+        0, 0, 0,
+        0.2f
+      )
+    }
 }
