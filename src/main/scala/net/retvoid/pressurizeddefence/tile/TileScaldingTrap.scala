@@ -62,6 +62,7 @@ class TileScaldingTrap extends TileEntity with ITickable {
 
   override def update(): Unit = {
     if (!world.isRemote) {
+      println(steam.getSteam)
       if (reloadCooldown == 0) {
         if (steam.isFull) {
           val entities: List[EntityLivingBase] = world.getEntitiesWithinAABB(classOf[EntityLivingBase], new AxisAlignedBB(pos.add(0, 1, 0))).asScala.toList

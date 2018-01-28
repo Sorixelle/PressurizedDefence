@@ -1,5 +1,6 @@
 tile.pressurizeddefence.boiler.name=Steam Boiler
 tile.pressurizeddefence.turret.name=Turret
+tile.pressurizeddefence.scalding_trap.name=Scalding Trap
 
 item.pressurizeddefence.turret_bullet.name=Turret Bullet
 item.pressurizeddefence.turret_bullet_light.name=Light Turret Bullet
