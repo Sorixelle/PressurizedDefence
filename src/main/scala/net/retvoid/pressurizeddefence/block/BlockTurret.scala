@@ -35,6 +35,7 @@ import net.retvoid.pressurizeddefence.tile.TileTurret
 object BlockTurret extends BaseBlock(Material.IRON) with ITileEntityProvider {
   lazy val FACING: PropertyDirection = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL)
   setName("turret")
+  setCreativeTab(PressurizedDefence.creativeTab)
 
   override def onBlockPlacedBy(worldIn: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase,
                                stack: ItemStack): Unit =

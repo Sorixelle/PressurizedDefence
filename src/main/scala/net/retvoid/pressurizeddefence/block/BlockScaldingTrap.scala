@@ -23,10 +23,12 @@ import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.world.World
+import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.tile.TileScaldingTrap
 
 object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvider {
   setName("scalding_trap")
+  setCreativeTab(PressurizedDefence.creativeTab)
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
 

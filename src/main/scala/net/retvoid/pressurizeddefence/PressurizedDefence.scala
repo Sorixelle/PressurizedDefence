@@ -18,13 +18,17 @@
 
 package net.retvoid.pressurizeddefence
 
+import net.minecraft.creativetab.CreativeTabs
+import net.minecraft.item.ItemStack
 import net.minecraftforge.fml.common.{Mod, SidedProxy}
 import net.minecraftforge.fml.common.Mod.EventHandler
 import net.minecraftforge.fml.common.event.{FMLInitializationEvent, FMLPostInitializationEvent, FMLPreInitializationEvent}
 import net.minecraftforge.fml.common.network.NetworkRegistry
+import net.retvoid.pressurizeddefence.block.BlockBoiler
 import net.retvoid.pressurizeddefence.capability.Capabilities
 import net.retvoid.pressurizeddefence.entity.Entities
 import net.retvoid.pressurizeddefence.gui.GUIProxy
+import net.retvoid.pressurizeddefence.item.upgrade.ItemSpeedUpgrade
 import net.retvoid.pressurizeddefence.proxy.CommonProxy
 import org.apache.logging.log4j.{LogManager, Logger}
 
@@ -38,10 +42,14 @@ import org.apache.logging.log4j.{LogManager, Logger}
 object PressurizedDefence {
   final val MOD_ID = "pressurizeddefence"
   final val MOD_NAME = "Pressurized Defence"
-  final val MOD_VERSION = "0.1.0"
+  final val MOD_VERSION = "0.1.1"
 
   private var loggerOpt: Option[Logger] = None
   def logger: Logger = loggerOpt.getOrElse(LogManager.getLogger(MOD_NAME))
+
+  val creativeTab: CreativeTabs = new CreativeTabs(MOD_ID) {
+    override def getTabIconItem: ItemStack = new ItemStack(ItemSpeedUpgrade)
+  }
 
   @SidedProxy(
     clientSide = "net.retvoid.pressurizeddefence.proxy.ClientProxy",

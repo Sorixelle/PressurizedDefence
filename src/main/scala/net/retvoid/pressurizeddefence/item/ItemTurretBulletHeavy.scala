@@ -18,8 +18,11 @@
 
 package net.retvoid.pressurizeddefence.item
 
+import net.retvoid.pressurizeddefence.PressurizedDefence
+
 object ItemTurretBulletHeavy extends ItemTurretAmmo {
   setName("turret_bullet_heavy")
+  setCreativeTab(PressurizedDefence.creativeTab)
 
   override def getDamage: Int = 8
 

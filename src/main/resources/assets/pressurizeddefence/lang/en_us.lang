@@ -11,3 +11,5 @@ entity.pressurizeddefence.turret_projectile.name=Turret
 
 death.attack.steam_turret=%1$s was fatally shot by a turret
 death.attack.steam_scalding_trap=%1$s suffered severe burns from a scalding trap
+
+itemGroup.pressurizeddefence=Pressurized Defence

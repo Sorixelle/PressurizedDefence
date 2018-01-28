@@ -17,10 +17,12 @@
  */
 
 package net.retvoid.pressurizeddefence.item.upgrade
+import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.item.BaseItem
 
 object ItemSpeedUpgrade extends BaseItem with TurretUpgrade {
   setName("speed_upgrade")
+  setCreativeTab(PressurizedDefence.creativeTab)
 
   override def getTurretFireSpeed: Int = 50
 
