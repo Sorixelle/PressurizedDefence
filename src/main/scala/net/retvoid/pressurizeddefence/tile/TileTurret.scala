@@ -22,8 +22,9 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.item.ItemStack
 import net.minecraft.nbt.NBTTagCompound
 import net.minecraft.tileentity.TileEntity
-import net.minecraft.util.{EnumFacing, ITickable}
-import net.minecraft.util.math.BlockPos
+import net.minecraft.util.{EnumFacing, EnumParticleTypes, ITickable}
+import net.minecraft.util.math.{BlockPos, Vec3d}
+import net.minecraft.world.WorldServer
 import net.minecraftforge.common.capabilities.Capability
 import net.minecraftforge.items.{CapabilityItemHandler, ItemStackHandler}
 import net.retvoid.pressurizeddefence.block.BlockTurret
@@ -105,6 +106,7 @@ class TileTurret extends TileEntity with ITickable {
             projectile.fireInDirection(facing)
             steam.consume(steamUsed)
             world.spawnEntity(projectile)
+            doParticles(facing)
           }
           fireCooldown = cooldown
           markDirty()
@@ -113,6 +115,35 @@ class TileTurret extends TileEntity with ITickable {
         fireCooldown -= 1
         markDirty()
       }
+    }
+  }
+
+  private def doParticles(facing: EnumFacing): Unit = {
+    val motionY: Double = 0.6
+    val motionX: Double = facing match {
+      case EnumFacing.EAST => 0.1
+      case EnumFacing.WEST => -0.1
+      case _ => 0
+    }
+    val motionZ: Double = facing match {
+      case EnumFacing.SOUTH => 0.1
+      case EnumFacing.NORTH => -0.1
+      case _ => 0
+    }
+    val particlePos: Vec3d = centerPosOnFace(pos.asDoubles, facing)
+    -0.2 to 0.2 by 0.1 foreach { offset =>
+      world.asInstanceOf[WorldServer].spawnParticle(
+        EnumParticleTypes.SMOKE_NORMAL,
+        false,
+        particlePos.x,
+        particlePos.y,
+        particlePos.z,
+        2,
+        if (motionX == 0) motionX + offset else motionX,
+        motionY,
+        if (motionZ == 0) motionZ + offset else motionZ,
+        0.02d
+      )
     }
   }
 

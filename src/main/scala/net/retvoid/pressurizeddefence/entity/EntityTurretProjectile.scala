@@ -41,7 +41,7 @@ class EntityTurretProjectile(world: World, pos: Vec3d, damage: Int, speed: Float
 
   override def onImpact(result: RayTraceResult): Unit = {
     if (result.entityHit != null) {
-      result.entityHit.attackEntityFrom(DamageSource.causeThrownDamage(this, this.getThrower), damage)
+      result.entityHit.attackEntityFrom(ModDamageSources.TURRET, damage)
     }
     if (!world.isRemote) setDead()
   }

@@ -28,17 +28,19 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 import net.retvoid.pressurizeddefence.PressurizedDefence
-import net.retvoid.pressurizeddefence.tile.{TileBoiler, TileTurret}
+import net.retvoid.pressurizeddefence.tile.{TileBoiler, TileScaldingTrap, TileTurret}
 
 @Mod.EventBusSubscriber
 object Blocks {
   final val blocks: Seq[BaseBlock] =
     BlockBoiler ::
     BlockTurret ::
+    BlockScaldingTrap ::
     Nil
   final val tiles: Seq[(Class[_ <: TileEntity], String)] =
     (classOf[TileBoiler], "boiler") ::
     (classOf[TileTurret], "turret") ::
+    (classOf[TileScaldingTrap], "scalding_trap") ::
     Nil
 
   @SubscribeEvent
