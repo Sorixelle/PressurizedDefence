@@ -1,0 +1,17 @@
+{
+  "multipart": [
+    { "when": { "up": true }, "apply": { "model": "pressurizeddefence:pipe_attach" } },
+    { "when": { "down": true }, "apply": { "model": "pressurizeddefence:pipe_attach", "x": 180 } },
+    { "when": { "north": true }, "apply": { "model": "pressurizeddefence:pipe_attach", "x": 90 } },
+    { "when": { "south": true }, "apply": { "model": "pressurizeddefence:pipe_attach", "x": 270 } },
+    { "when": { "east": true }, "apply": { "model": "pressurizeddefence:pipe_attach", "x": 90, "y": 90 } },
+    { "when": { "west": true }, "apply": { "model": "pressurizeddefence:pipe_attach", "x": 90, "y": 270 } },
+
+    { "when": { "up": false }, "apply": { "model": "pressurizeddefence:pipe_noattach" } },
+    { "when": { "down": false }, "apply": { "model": "pressurizeddefence:pipe_noattach", "x": 180 } },
+    { "when": { "north": false }, "apply": { "model": "pressurizeddefence:pipe_noattach", "x": 90 } },
+    { "when": { "south": false }, "apply": { "model": "pressurizeddefence:pipe_noattach", "x": 270 } },
+    { "when": { "east": false }, "apply": { "model": "pressurizeddefence:pipe_noattach", "x": 90, "y": 90 } },
+    { "when": { "west": false }, "apply": { "model": "pressurizeddefence:pipe_noattach", "x": 90, "y": 270 } }
+  ]
+}

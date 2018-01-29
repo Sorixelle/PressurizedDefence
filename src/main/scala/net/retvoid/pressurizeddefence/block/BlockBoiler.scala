@@ -33,7 +33,7 @@ import net.retvoid.pressurizeddefence.Predefs._
 import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.tile.TileBoiler
 
-object BlockBoiler extends BaseBlock(Material.IRON) with ITileEntityProvider {
+object BlockBoiler extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
   lazy val FACING: PropertyDirection = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL)
   lazy val PROCESSING: PropertyBool = PropertyBool.create("processing") // TODO: actually use this for client-side effects
 
@@ -55,6 +55,8 @@ object BlockBoiler extends BaseBlock(Material.IRON) with ITileEntityProvider {
     (state.getValue(FACING).getIndex - 2) + (state.getValue(PROCESSING).booleanValue() ? 4 | 0)
 
   override def getLightValue(state: IBlockState): Int = state.getValue(PROCESSING).booleanValue() ? 10 | 0
+
+  override def getPipeConnectFaces(state: IBlockState): Seq[EnumFacing] = EnumFacing.UP :: Nil
 
   override def onBlockActivated(worldIn: World, pos: BlockPos, state: IBlockState, playerIn: EntityPlayer,
                                 hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean = {

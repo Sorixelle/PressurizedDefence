@@ -38,6 +38,7 @@ class TileBoiler extends TileEntity with ITickable {
   }
   private val steam: SteamHolder = new SteamHolder {
     override def onSteamChange(prev: Int): Unit = markDirty()
+    override def acceptsSteam: Boolean = false
   }
   var burnTime: Int = 0
   var maxBurnTime: Int = 0

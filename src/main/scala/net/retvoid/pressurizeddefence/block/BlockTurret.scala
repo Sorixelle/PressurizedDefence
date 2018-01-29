@@ -32,7 +32,7 @@ import net.minecraft.world.World
 import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.tile.TileTurret
 
-object BlockTurret extends BaseBlock(Material.IRON) with ITileEntityProvider {
+object BlockTurret extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
   lazy val FACING: PropertyDirection = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL)
   setName("turret")
   setCreativeTab(PressurizedDefence.creativeTab)
@@ -49,6 +49,8 @@ object BlockTurret extends BaseBlock(Material.IRON) with ITileEntityProvider {
 
   override def getMetaFromState(state: IBlockState): Int = state.getValue(FACING).getIndex - 2
   override def getStateFromMeta(meta: Int): IBlockState = getDefaultState.withProperty(FACING, EnumFacing.getFront((meta & 3) + 2))
+
+  override def getPipeConnectFaces(state: IBlockState): Seq[EnumFacing] = EnumFacing.DOWN :: Nil
 
   override def onBlockActivated(worldIn: World, pos: BlockPos, state: IBlockState, playerIn: EntityPlayer,
                                 hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean = {

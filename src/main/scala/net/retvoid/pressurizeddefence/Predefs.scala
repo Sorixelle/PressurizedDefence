@@ -18,8 +18,10 @@
 
 package net.retvoid.pressurizeddefence
 
+import net.minecraft.block.state.IBlockState
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.{BlockPos, Vec3d, Vec3i}
+import net.minecraft.world.World
 
 object Predefs {
   def scale(value: Double, maxValue: Double, maxScaled: Double): Int = Math.ceil((value / maxValue) * maxScaled).toInt
@@ -56,5 +58,11 @@ object Predefs {
 
   implicit class BlockPosUtil(bp: BlockPos) extends AnyRef {
     override def toString: String = s"[${bp.getX}, ${bp.getY}, ${bp.getZ}]"
+
+    def allTouching: Seq[BlockPos] =
+      bp.down :: bp.up :: bp.north :: bp.south :: bp.west :: bp.east :: Nil
+    def allTouchingZipped: Seq[(BlockPos, EnumFacing)] = allTouching zip EnumFacing.VALUES
+
+    def allTouchingStates(world: World): Seq[IBlockState] = allTouching map world.getBlockState
   }
 }

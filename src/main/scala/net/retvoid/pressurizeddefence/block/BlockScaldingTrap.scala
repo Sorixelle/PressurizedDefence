@@ -22,15 +22,18 @@ import net.minecraft.block.ITileEntityProvider
 import net.minecraft.block.material.Material
 import net.minecraft.block.state.IBlockState
 import net.minecraft.tileentity.TileEntity
+import net.minecraft.util.EnumFacing
 import net.minecraft.world.World
 import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.tile.TileScaldingTrap
 
-object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvider {
+object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
   setName("scalding_trap")
   setCreativeTab(PressurizedDefence.creativeTab)
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
 
   override def createNewTileEntity(worldIn: World, meta: Int): TileEntity = new TileScaldingTrap
+
+  override def getPipeConnectFaces(state: IBlockState): Seq[EnumFacing] = EnumFacing.DOWN :: Nil
 }

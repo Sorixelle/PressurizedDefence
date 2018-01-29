@@ -65,6 +65,8 @@ class SteamHolder(maxSteam: Int = 10000) extends ISteamHolder {
 
   def onSteamChange(prev: Int): Unit = { }
 
+  override def acceptsSteam: Boolean = true
+
   override def set(amount: Int): Unit = steam =
     if (amount > getMaxSteam) getMaxSteam
     else if (amount < 0) 0

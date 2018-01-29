@@ -16,24 +16,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package net.retvoid.pressurizeddefence.capability.steam
+package net.retvoid.pressurizeddefence.block
 
-trait ISteamHolder {
-  def consume(amount: Int, simulate: Boolean): Int
+import net.minecraft.block.state.IBlockState
+import net.minecraft.util.EnumFacing
 
-  def add(amount: Int, simulate: Boolean): Int
-  def add(amount: Int): Int = add(amount, false)
+trait IPipeConnect {
+  def getPipeConnectFaces(state: IBlockState): Seq[EnumFacing]
 
-  def set(amount: Int): Unit
-  def consume(amount: Int): Int = consume(amount, false)
-
-  def getSteam: Int
-
-  def getMaxSteam: Int
-
-  def acceptsSteam: Boolean
-
-  def isFull: Boolean = getSteam == getMaxSteam
-
-  def isEmpty: Boolean = getSteam == 0
+  def connectsOnFace(face: EnumFacing, state: IBlockState): Boolean = getPipeConnectFaces(state).contains(face)
 }
