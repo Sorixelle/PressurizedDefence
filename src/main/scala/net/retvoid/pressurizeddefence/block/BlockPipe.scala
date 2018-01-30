@@ -26,6 +26,7 @@ import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.EnumFacing
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.{IBlockAccess, World}
+import net.retvoid.pressurizeddefence.PressurizedDefence
 import net.retvoid.pressurizeddefence.tile.TilePipe
 
 object BlockPipe extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
@@ -40,6 +41,9 @@ object BlockPipe extends BaseBlock(Material.IRON) with ITileEntityProvider with 
   lazy val props: Seq[(PropertyBool, EnumFacing)] =
     (UP :: DOWN :: NORTH :: SOUTH :: WEST:: EAST :: Nil) zip EnumFacing.VALUES
   setName("pipe")
+  setHardness(5f)
+  setResistance(10f)
+  setCreativeTab(PressurizedDefence.creativeTab)
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
   override def isFullBlock(state: IBlockState): Boolean = false

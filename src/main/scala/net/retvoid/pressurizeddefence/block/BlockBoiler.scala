@@ -38,6 +38,8 @@ object BlockBoiler extends BaseBlock(Material.IRON) with ITileEntityProvider wit
   lazy val PROCESSING: PropertyBool = PropertyBool.create("processing") // TODO: actually use this for client-side effects
 
   setName("boiler")
+  setHardness(5f)
+  setResistance(10f)
   setCreativeTab(PressurizedDefence.creativeTab)
 
   override def onBlockPlacedBy(worldIn: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase,

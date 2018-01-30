@@ -32,6 +32,8 @@ import net.retvoid.pressurizeddefence.tile.TileScaldingTrap
 
 object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
   setName("scalding_trap")
+  setHardness(5f)
+  setResistance(10f)
   setCreativeTab(PressurizedDefence.creativeTab)
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
