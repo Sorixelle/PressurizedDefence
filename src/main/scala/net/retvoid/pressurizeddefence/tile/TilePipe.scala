@@ -55,7 +55,7 @@ class TilePipe extends TileEntity with ITickable {
   override def update(): Unit = {
     val touchingSteamContainers: Seq[ISteamHolder] = pos.allTouchingZipped
       .map { case (p, s) => (world.getTileEntity(p), s) }
-      .filter { case (t, s) => t != null && t.hasCapability(Capabilities.STEAM_CAPABILITY, s.getOpposite) }
+      .filter { case (t, _) => t != null }
       .flatMap { case (t, s) => Option(t.getCapability(Capabilities.STEAM_CAPABILITY, s.getOpposite)) }
       .filter { _.acceptsSteam }
     val steamToTransfer: Int = if (touchingSteamContainers.isEmpty) 0 else steam.getSteam / touchingSteamContainers.size

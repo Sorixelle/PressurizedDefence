@@ -20,23 +20,38 @@ package net.retvoid.pressurizeddefence.block
 
 import net.minecraft.block.ITileEntityProvider
 import net.minecraft.block.material.Material
-import net.minecraft.block.state.IBlockState
+import net.minecraft.block.properties.PropertyDirection
+import net.minecraft.block.state.{BlockStateContainer, IBlockState}
+import net.minecraft.entity.EntityLivingBase
 import net.minecraft.entity.player.EntityPlayer
+import net.minecraft.item.ItemStack
 import net.minecraft.tileentity.TileEntity
 import net.minecraft.util.math.BlockPos
 import net.minecraft.util.text.TextComponentTranslation
 import net.minecraft.util.{EnumFacing, EnumHand}
 import net.minecraft.world.World
 import net.retvoid.pressurizeddefence.PressurizedDefence
-import net.retvoid.pressurizeddefence.tile.TileScaldingTrap
+import net.retvoid.pressurizeddefence.tile.TileBlowbackCannon
 
-object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvider with IPipeConnect {
-  setName("scalding_trap")
+object BlockBlowbackCannon extends BaseBlock(Material.IRON) with IPipeConnect with ITileEntityProvider {
+  lazy val FACING: PropertyDirection = PropertyDirection.create("facing", EnumFacing.Plane.HORIZONTAL)
+
+  setName("blowback_cannon")
+  setHardness(5.0F)
+  setResistance(10.0F)
   setCreativeTab(PressurizedDefence.creativeTab)
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
 
-  override def createNewTileEntity(worldIn: World, meta: Int): TileEntity = new TileScaldingTrap
+  override def onBlockPlacedBy(worldIn: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase,
+                               stack: ItemStack): Unit =
+    worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing.getOpposite), 2)
+
+  override def createBlockState(): BlockStateContainer = new BlockStateContainer(BlockBlowbackCannon, FACING)
+  override def createNewTileEntity(worldIn: World, meta: Int): TileEntity = new TileBlowbackCannon
+
+  override def getStateFromMeta(meta: Int): IBlockState = getDefaultState.withProperty(FACING, EnumFacing.getFront((meta & 3) + 2))
+  override def getMetaFromState(state: IBlockState): Int = state.getValue(FACING).getIndex - 2
 
   override def getPipeConnectFaces(state: IBlockState): Seq[EnumFacing] = EnumFacing.DOWN :: Nil
 
@@ -44,7 +59,7 @@ object BlockScaldingTrap extends BaseBlock(Material.IRON) with ITileEntityProvid
                                 hand: EnumHand, facing: EnumFacing, hitX: Float, hitY: Float, hitZ: Float): Boolean = {
     if (worldIn.isRemote) return true
     worldIn.getTileEntity(pos) match {
-      case tile: TileScaldingTrap =>
+      case tile: TileBlowbackCannon =>
         playerIn.sendMessage(new TextComponentTranslation(s"tile.${PressurizedDefence.MOD_ID}.steam", tile.getSteam: Integer, tile.getMaxSteam: Integer))
         true
       case _ => false

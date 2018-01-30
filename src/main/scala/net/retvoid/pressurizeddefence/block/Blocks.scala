@@ -28,7 +28,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent
 import net.minecraftforge.fml.common.registry.GameRegistry
 import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 import net.retvoid.pressurizeddefence.PressurizedDefence
-import net.retvoid.pressurizeddefence.tile.{TileBoiler, TilePipe, TileScaldingTrap, TileTurret}
+import net.retvoid.pressurizeddefence.tile._
 
 @Mod.EventBusSubscriber
 object Blocks {
@@ -37,12 +37,14 @@ object Blocks {
     BlockTurret ::
     BlockScaldingTrap ::
     BlockPipe ::
+    BlockBlowbackCannon ::
     Nil
   final val tiles: Seq[(Class[_ <: TileEntity], String)] =
     (classOf[TileBoiler], "boiler") ::
     (classOf[TileTurret], "turret") ::
     (classOf[TileScaldingTrap], "scalding_trap") ::
     (classOf[TilePipe], "pipe") ::
+    (classOf[TileBlowbackCannon], "blowback_cannon") ::
     Nil
 
   @SubscribeEvent
