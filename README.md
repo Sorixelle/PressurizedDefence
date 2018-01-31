@@ -3,6 +3,9 @@
 
 Steam-powered weaponry and defences in Minecraft.
 
+### Credits
+- **MageProtocol** for the brass texture used to base most of the textures on
+
 ### Licensing
 This mod is licenced under the [GNU Lesser General Public License v3](https://www.gnu.org/licenses/lgpl-3.0-standalone.html).
 All textures and models are licensed under [Creative Commons CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
