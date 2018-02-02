@@ -20,7 +20,6 @@ package net.retvoid.pressurizeddefence.gui
 
 import net.minecraft.client.gui.inventory.GuiContainer
 import net.minecraft.inventory.Container
-import net.retvoid.pressurizeddefence.PressurizedDefence
 
 import scala.language.implicitConversions
 

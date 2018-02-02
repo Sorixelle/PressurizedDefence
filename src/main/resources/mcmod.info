@@ -2,9 +2,11 @@
   "modid": "pressurizeddefence",
   "name": "Pressurized Defense",
   "description": "Steam-powered weaponry in Minecraft!",
-  "version": "0.2.0",
+  "url": "https://minecraft.curseforge.com/projects/pressurized-defence",
+  "version": "0.2.1",
   "mcversion": "1.12.2",
   "authorList": [
     "TheReturningVoid"
-  ]
+  ],
+  "credits": "MageProtocol (textures)"
 }]

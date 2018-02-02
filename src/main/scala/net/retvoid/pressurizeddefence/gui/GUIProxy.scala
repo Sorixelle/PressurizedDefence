@@ -22,10 +22,12 @@ import net.minecraft.entity.player.EntityPlayer
 import net.minecraft.util.math.BlockPos
 import net.minecraft.world.World
 import net.minecraftforge.fml.common.network.IGuiHandler
+import net.minecraftforge.fml.relauncher.{Side, SideOnly}
 import net.retvoid.pressurizeddefence.gui.container.{BoilerContainer, TurretContainer}
 import net.retvoid.pressurizeddefence.tile.{TileBoiler, TileTurret}
 
 class GUIProxy extends IGuiHandler {
+  @SideOnly(Side.CLIENT)
   override def getClientGuiElement(ID: Int, player: EntityPlayer, world: World, x: Int, y: Int, z: Int): AnyRef =
     world.getTileEntity(new BlockPos(x, y, z)) match {
       case boiler: TileBoiler => new BoilerGUI(boiler, new BoilerContainer(player.inventory, boiler))
