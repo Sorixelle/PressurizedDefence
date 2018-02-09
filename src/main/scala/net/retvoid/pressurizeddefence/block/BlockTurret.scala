@@ -41,13 +41,14 @@ object BlockTurret extends BaseBlock(Material.IRON) with ITileEntityProvider wit
 
   override def onBlockPlacedBy(worldIn: World, pos: BlockPos, state: IBlockState, placer: EntityLivingBase,
                                stack: ItemStack): Unit =
-    worldIn.setBlockState(pos, state.withProperty(FACING, EnumFacing.getDirectionFromEntityLiving(pos, placer)), 2)
+    worldIn.setBlockState(pos, state.withProperty(FACING, placer.getHorizontalFacing.getOpposite), 2)
 
   override protected def createBlockState(): BlockStateContainer = new BlockStateContainer(BlockTurret, FACING)
 
   override def createNewTileEntity(world: World, meta: Int): TileEntity = new TileTurret
 
   override def isOpaqueCube(state: IBlockState): Boolean = false
+  override def isFullBlock(state: IBlockState): Boolean = false
 
   override def getMetaFromState(state: IBlockState): Int = state.getValue(FACING).getIndex - 2
   override def getStateFromMeta(meta: Int): IBlockState = getDefaultState.withProperty(FACING, EnumFacing.getFront((meta & 3) + 2))

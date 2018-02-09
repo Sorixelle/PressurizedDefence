@@ -35,7 +35,7 @@ class EntityTurretProjectile(world: World, pos: Vec3d, damage: Int, speed: Float
   def this(world: World) = this(world, Vec3d.ZERO)
 
   def fireInDirection(direction: EnumFacing): Unit =
-    setVelocity(direction.getDirectionVec.getX * speed, direction.getDirectionVec.getY * speed, direction.getDirectionVec.getZ * speed)
+    shoot(direction.getDirectionVec.getX, direction.getDirectionVec.getY, direction.getDirectionVec.getZ, speed * 0.5f, 0.0f)
 
   override def getGravityVelocity: Float = weight / 100
 
